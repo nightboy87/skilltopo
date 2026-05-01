@@ -36,7 +36,7 @@ SkillTopo therefore uses this rule:
 ## Installation
 
 ```bash
-pip install skilltopo
+pip install git+https://github.com/nightboy87/skilltopo.git
 ```
 
 For semantic matching:
