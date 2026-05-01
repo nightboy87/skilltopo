@@ -42,7 +42,7 @@ pip install git+https://github.com/nightboy87/skilltopo.git
 For semantic matching:
 
 ```bash
-pip install "skilltopo[semantic]"
+pip install "skilltopo[semantic] @ git+https://github.com/nightboy87/skilltopo.git"
 ```
 
 For local development:
