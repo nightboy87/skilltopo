@@ -1,0 +1,18 @@
+name: knowledge-crystallization
+description: Compress analysis into reusable knowledge cards, principles, and review prompts.
+aliases: [crystallize, knowledge-card, 知识结晶]
+keywords: [知识结晶, 结晶卡, 卡片, 复习, 自测题, 迁移题, 总结成卡片, crystallize, knowledge card]
+keyword_weights: {知识结晶: 1.0, 结晶卡: 1.0, 卡片: 0.7, 复习: 0.6, 自测题: 0.8, 迁移题: 0.8, 总结成卡片: 1.0, crystallize: 1.0, knowledge card: 1.0}
+negative_keywords: [外卖, 歌曲]
+priority: 0.8
+risk_level: low
+requires_confirmation: false
+input_types: [analysis_report, notes, article]
+output_types: [knowledge_card, quiz, review_prompt]
+preconditions: [The user has an analysis, note, or report that should be condensed for future reuse.]
+postconditions: [A concise reusable knowledge artifact is produced.]
+workflow_edges:
+  next: []
+examples:
+  positive:
+    - {query: "把这份分析压缩成正式结晶卡", expected: knowledge-crystallization}

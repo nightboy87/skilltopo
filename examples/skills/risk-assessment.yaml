@@ -1,0 +1,18 @@
+name: risk-assessment
+description: Assess operational, safety, privacy, compliance, and execution risks before an agent acts.
+aliases: [agent-risk-assessment, 风险评估]
+keywords: [risk, safety, privacy, compliance, assessment, 风险, 风险评估, 安全, 隐私, 合规, 误用, 失控, 高风险]
+keyword_weights: {risk: 1.0, safety: 0.9, privacy: 0.8, compliance: 0.9, assessment: 0.6, 风险: 1.0, 风险评估: 1.0, 安全: 0.8, 隐私: 0.8, 合规: 0.9, 误用: 0.8, 失控: 0.8, 高风险: 1.0}
+negative_keywords: [外卖, 歌曲]
+priority: 0.85
+risk_level: low
+requires_confirmation: false
+input_types: [plan, workflow, tool_call]
+output_types: [risk_matrix, mitigation_plan]
+preconditions: [The user wants to evaluate risks before executing a workflow or agent action.]
+postconditions: [Risks and mitigations are listed.]
+workflow_edges:
+  next: []
+examples:
+  positive:
+    - {query: "评估这个agent方案的风险", expected: risk-assessment}

@@ -1,0 +1,20 @@
+name: code-review
+description: Review code for correctness, maintainability, security, and implementation gaps.
+aliases: [github-code-review, review-code, 代码审查]
+keywords: [review, code review, github, pull request, PR, 审查, 代码审查, 看代码, 代码质量, 安全问题, 重构建议, implementation]
+keyword_weights: {review: 0.8, code review: 1.0, github: 0.6, pull request: 0.9, PR: 0.7, 审查: 1.0, 代码审查: 1.0, 看代码: 0.8, 代码质量: 0.8, 安全问题: 0.7, 重构建议: 0.8, implementation: 0.6}
+negative_keywords: [外卖, 歌曲, 播放]
+priority: 0.75
+risk_level: medium
+requires_confirmation: false
+input_types: [code_diff, repository, pull_request]
+output_types: [review_comments, risk_list, improvement_plan]
+preconditions: [The user asks to inspect code or review changes.]
+postconditions: [Review findings and suggested fixes are produced.]
+workflow_chains:
+  - [code-review, systematic-debugging, test-runner]
+workflow_edges:
+  next: [test-runner]
+examples:
+  positive:
+    - {query: "审查这段代码", expected: code-review}

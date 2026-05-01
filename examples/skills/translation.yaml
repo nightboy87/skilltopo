@@ -1,0 +1,18 @@
+name: translation
+description: Translate text between languages while preserving meaning and terminology.
+aliases: [translate, baoyu-translate, 翻译]
+keywords: [translate, translation, bilingual, English, Chinese, 翻译, 中英, 英文, 中文, 双语, 术语]
+keyword_weights: {translate: 1.0, translation: 1.0, bilingual: 0.8, English: 0.6, Chinese: 0.6, 翻译: 1.0, 中英: 0.9, 英文: 0.6, 中文: 0.6, 双语: 0.8, 术语: 0.6}
+negative_keywords: [外卖, 歌曲]
+priority: 0.65
+risk_level: low
+requires_confirmation: false
+input_types: [text]
+output_types: [translated_text]
+preconditions: [The user asks to translate text.]
+postconditions: [Translated text is produced.]
+workflow_edges:
+  next: [document-analysis, knowledge-crystallization]
+examples:
+  positive:
+    - {query: "翻译这段英文", expected: translation}

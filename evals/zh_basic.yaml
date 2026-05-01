@@ -1,0 +1,9 @@
+test_cases:
+  - query: "找一篇论文"
+    expected: arxiv-research
+  - query: "代码崩了"
+    expected: systematic-debugging
+  - query: "审查这段代码"
+    expected: code-review
+  - query: "帮我订外卖"
+    expected: null

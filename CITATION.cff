@@ -1,0 +1,12 @@
+cff-version: 1.2.0
+title: SkillTopo
+message: "If you use SkillTopo, please cite or attribute the project."
+type: software
+authors:
+  - family-names: Jiang
+    given-names: Emile
+    alias: nightboy87
+repository-code: "https://github.com/nightboy87/skilltopo"
+license: Apache-2.0
+version: "0.2.0-alpha"
+date-released: 2026-05-01

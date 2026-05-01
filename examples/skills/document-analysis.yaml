@@ -1,0 +1,20 @@
+name: document-analysis
+description: Read, extract, summarize, and structure document content.
+aliases: [ocr-and-documents, document-reader, 文档分析]
+keywords: [document, docs, pdf, OCR, ocr, file, 文档, 文件, PDF, 提取, 摘要, 总结, 读取, 分析材料]
+keyword_weights: {document: 0.8, docs: 0.7, pdf: 1.0, OCR: 1.0, ocr: 1.0, file: 0.5, 文档: 1.0, 文件: 0.6, PDF: 1.0, 提取: 0.8, 摘要: 0.8, 总结: 0.7, 读取: 0.7, 分析材料: 1.0}
+negative_keywords: [外卖, 歌曲, 播放]
+priority: 0.7
+risk_level: low
+requires_confirmation: false
+input_types: [pdf, markdown, text_file, image]
+output_types: [summary, extracted_text, structured_notes]
+preconditions: [The user provides or references a document to read or analyze.]
+postconditions: [Important information is extracted into a structured form.]
+workflow_chains:
+  - [document-analysis, knowledge-crystallization]
+workflow_edges:
+  next: [knowledge-crystallization, translation]
+examples:
+  positive:
+    - {query: "总结这个PDF", expected: document-analysis}

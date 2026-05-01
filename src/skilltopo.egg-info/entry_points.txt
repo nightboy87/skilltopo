@@ -1,0 +1,2 @@
+[console_scripts]
+skilltopo = skilltopo.cli:main

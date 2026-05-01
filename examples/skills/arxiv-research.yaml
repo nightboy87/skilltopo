@@ -1,0 +1,24 @@
+name: arxiv-research
+description: Search, triage, and read academic papers or preprints.
+aliases: [arxiv, paper-search, literature-search]
+keywords: [论文, arxiv, paper, papers, 学术, 文献, 研究, 预印本, 期刊, literature, research]
+keyword_weights: {论文: 1.0, arxiv: 1.0, paper: 1.0, papers: 1.0, 学术: 0.7, 文献: 0.7, 研究: 0.6, 预印本: 1.0, literature: 0.8, research: 0.6}
+negative_keywords: [外卖, 订餐, 歌曲, 音乐, food delivery, song]
+priority: 0.9
+risk_level: low
+requires_confirmation: false
+input_types: [research_topic, paper_title, arxiv_id]
+output_types: [paper_list, paper_summary, reading_plan]
+preconditions: [The user asks to find, read, compare, or summarize academic papers.]
+postconditions: [Candidate papers or a structured reading summary are produced.]
+workflow_chains:
+  - [arxiv-research, document-analysis, knowledge-crystallization]
+  - [arxiv-research, translation]
+workflow_edges:
+  next: [document-analysis, translation, knowledge-crystallization]
+examples:
+  positive:
+    - {query: "找一篇论文", expected: arxiv-research}
+    - {query: "find papers about agent evaluation", expected: arxiv-research}
+  negative:
+    - {query: "播放一首歌曲", expected: null}

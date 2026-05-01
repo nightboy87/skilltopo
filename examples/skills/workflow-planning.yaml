@@ -1,0 +1,18 @@
+name: workflow-planning
+description: Break vague goals into structured steps, dependencies, acceptance criteria, and execution plans.
+aliases: [planning, task-planning, 需求拆解, 流程设计]
+keywords: [plan, planning, workflow, roadmap, steps, acceptance criteria, 计划, 流程, 步骤, 需求拆解, 验收标准, 执行方案, 任务拆解]
+keyword_weights: {plan: 0.8, planning: 0.8, workflow: 1.0, roadmap: 0.7, steps: 0.6, acceptance criteria: 0.8, 计划: 0.8, 流程: 0.8, 步骤: 0.6, 需求拆解: 1.0, 验收标准: 0.8, 执行方案: 1.0, 任务拆解: 1.0}
+negative_keywords: [外卖, 歌曲]
+priority: 0.7
+risk_level: low
+requires_confirmation: false
+input_types: [goal, rough_requirement]
+output_types: [plan, checklist, acceptance_criteria]
+preconditions: [The user has a vague goal that needs to be made executable.]
+postconditions: [A structured workflow or implementation plan is produced.]
+workflow_edges:
+  next: [risk-assessment]
+examples:
+  positive:
+    - {query: "把这个需求拆成开发步骤", expected: workflow-planning}

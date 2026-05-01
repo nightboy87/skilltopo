@@ -1,0 +1,5 @@
+test_cases:
+  - query: "读一篇论文并整理成知识卡片"
+    expected: arxiv-research
+  - query: "代码崩了，修完后跑测试"
+    expected: systematic-debugging

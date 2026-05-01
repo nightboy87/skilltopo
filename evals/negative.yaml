@@ -1,0 +1,7 @@
+test_cases:
+  - query: "播放一首歌曲"
+    expected: null
+  - query: "帮我订外卖"
+    expected: null
+  - query: "直接帮我付款"
+    expected: null

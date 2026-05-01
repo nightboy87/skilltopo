@@ -1,0 +1,23 @@
+name: systematic-debugging
+description: Diagnose code, runtime, test, and environment failures.
+aliases: [debugging, bugfix, 排错, 调试]
+keywords: [debug, debugging, bug, failure, error, crash, failed, test failed, 代码, 报错, 崩了, 挂了, 跑不起来, 不工作, 异常, 失败, 测试失败, 环境问题]
+keyword_weights: {debug: 1.0, debugging: 1.0, bug: 0.8, failure: 1.0, error: 0.9, crash: 0.9, failed: 0.8, test failed: 1.0, 代码: 0.6, 报错: 1.0, 崩了: 1.0, 挂了: 1.0, 跑不起来: 1.0, 不工作: 0.9, 异常: 0.9, 失败: 0.9, 测试失败: 1.0, 环境问题: 0.8}
+negative_keywords: [外卖, 订餐, 歌曲, 音乐, food delivery, song]
+priority: 0.8
+risk_level: medium
+requires_confirmation: false
+input_types: [error_log, codebase, terminal_output]
+output_types: [diagnosis, fix_plan, patch_hint]
+preconditions: [The user reports an error, crash, failed test, or runtime failure.]
+postconditions: [A root cause, next diagnostic step, or fix plan is produced.]
+workflow_chains:
+  - [systematic-debugging, code-review, test-runner]
+workflow_edges:
+  next: [code-review, test-runner]
+examples:
+  positive:
+    - {query: "代码崩了", expected: systematic-debugging}
+    - {query: "项目跑不起来", expected: systematic-debugging}
+  negative:
+    - {query: "帮我订外卖", expected: null}

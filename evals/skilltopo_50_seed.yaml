@@ -1,0 +1,101 @@
+test_cases:
+  - query: "找一篇论文"
+    expected: arxiv-research
+  - query: "帮我搜arxiv上的agent论文"
+    expected: arxiv-research
+  - query: "find papers about terminal agents"
+    expected: arxiv-research
+  - query: "有没有相关文献"
+    expected: arxiv-research
+  - query: "读一篇预印本"
+    expected: arxiv-research
+  - query: "代码崩了"
+    expected: systematic-debugging
+  - query: "项目跑不起来"
+    expected: systematic-debugging
+  - query: "测试失败了"
+    expected: systematic-debugging
+  - query: "程序挂了"
+    expected: systematic-debugging
+  - query: "debug this runtime error"
+    expected: systematic-debugging
+  - query: "审查这段代码"
+    expected: code-review
+  - query: "帮我做code review"
+    expected: code-review
+  - query: "看一下这个PR"
+    expected: code-review
+  - query: "检查代码质量"
+    expected: code-review
+  - query: "review this pull request"
+    expected: code-review
+  - query: "总结这个PDF"
+    expected: document-analysis
+  - query: "读取这个文档"
+    expected: document-analysis
+  - query: "帮我提取文件内容"
+    expected: document-analysis
+  - query: "OCR这张图"
+    expected: document-analysis
+  - query: "analyze this document"
+    expected: document-analysis
+  - query: "把这份分析压缩成正式结晶卡"
+    expected: knowledge-crystallization
+  - query: "生成自测题和迁移题"
+    expected: knowledge-crystallization
+  - query: "整理成知识卡片"
+    expected: knowledge-crystallization
+  - query: "crystallize these notes"
+    expected: knowledge-crystallization
+  - query: "翻译这段英文"
+    expected: translation
+  - query: "translate this paragraph"
+    expected: translation
+  - query: "做一个中英双语版本"
+    expected: translation
+  - query: "术语翻译保持一致"
+    expected: translation
+  - query: "把这个需求拆成开发步骤"
+    expected: workflow-planning
+  - query: "给我一个执行方案"
+    expected: workflow-planning
+  - query: "设计这个workflow"
+    expected: workflow-planning
+  - query: "补充验收标准"
+    expected: workflow-planning
+  - query: "评估这个agent方案的风险"
+    expected: risk-assessment
+  - query: "检查隐私和合规风险"
+    expected: risk-assessment
+  - query: "这个流程会不会失控"
+    expected: risk-assessment
+  - query: "risk assessment for this agent"
+    expected: risk-assessment
+  - query: "跑一下回归测试"
+    expected: test-runner
+  - query: "用pytest验证"
+    expected: test-runner
+  - query: "run tests for this code"
+    expected: test-runner
+  - query: "做单元测试"
+    expected: test-runner
+  - query: "帮我订外卖"
+    expected: null
+  - query: "播放一首歌曲"
+    expected: null
+  - query: "点一杯咖啡"
+    expected: null
+  - query: "今天晚上吃什么"
+    expected: null
+  - query: "打开音乐播放器"
+    expected: null
+  - query: "给我讲个笑话"
+    expected: null
+  - query: "帮我买电影票"
+    expected: null
+  - query: "查询附近餐厅"
+    expected: null
+  - query: "发工资"
+    expected: null
+  - query: "直接帮我付款"
+    expected: null

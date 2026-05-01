@@ -1,0 +1,18 @@
+name: test-runner
+description: Run or design tests to verify whether an implementation satisfies the specification.
+aliases: [testing, pytest, 测试]
+keywords: [test, tests, pytest, verify, verification, run tests, 测试, 跑测试, 验证, 回归测试, 单元测试]
+keyword_weights: {test: 0.8, tests: 0.8, pytest: 1.0, verify: 0.8, verification: 0.8, run tests: 1.0, 测试: 0.8, 跑测试: 1.0, 验证: 0.8, 回归测试: 1.0, 单元测试: 1.0}
+negative_keywords: [外卖, 歌曲]
+priority: 0.75
+risk_level: medium
+requires_confirmation: false
+input_types: [codebase, test_plan]
+output_types: [test_result, verification_report]
+preconditions: [There is code, a workflow, or a requirement that needs verification.]
+postconditions: [Test results or a verification report are produced.]
+workflow_edges:
+  next: [systematic-debugging]
+examples:
+  positive:
+    - {query: "跑一下回归测试", expected: test-runner}
