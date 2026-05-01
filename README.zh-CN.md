@@ -40,7 +40,7 @@ SkillTopo 提供：
 基础安装：
 
 ```bash
-pip install skilltopo
+pip install git+https://github.com/nightboy87/skilltopo.git
 ```
 
 如果要启用语义匹配：
