@@ -37,18 +37,6 @@ SkillTopo 提供：
 
 ## 安装
 
-基础安装：
-
-```bash
-pip install git+https://github.com/nightboy87/skilltopo.git
-```
-
-如果要启用语义匹配：
-
-```bash
-pip install "skilltopo[semantic] @ git+https://github.com/nightboy87/skilltopo.git"
-```
-
 本地开发：
 
 ```bash
