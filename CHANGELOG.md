@@ -1,5 +1,16 @@
 # Changelog
 
+## v0.2.1
+
+- Added public documentation for semantic matching optimization and Hermes-like Agent integration lessons.
+- Documented subprocess JSON Unicode handling, embedding cache patterns, local HTTP embedding service boundaries, semantic scoring risks, workflow_chains usage, and colloquial keyword coverage.
+- Added formal `skilltopo semantic-cache build` command for optional skill embedding cache generation.
+- Added semantic cache read/write/validation helpers, cached router usage, CLI `--semantic-cache`, and tests.
+- Added a synthetic Hermes-like integration example with a minimal embedding server and adapter tool.
+- Added Code of Conduct, GitHub issue templates, and pull request template for healthier open source collaboration.
+- Updated README documentation links and project version metadata.
+- Kept semantic matching optional and keyword-first routing as the default project policy.
+
 ## v0.2.0-alpha
 
 - Added real optional semantic matching via `sentence-transformers`.

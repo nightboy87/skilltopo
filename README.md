@@ -35,6 +35,16 @@ SkillTopo therefore uses this rule:
 
 ## Installation
 
+```bash
+pip install skilltopo
+```
+
+For semantic matching:
+
+```bash
+pip install "skilltopo[semantic]"
+```
+
 For local development:
 
 ```bash
@@ -61,6 +71,25 @@ Enable semantic matching:
 skilltopo recommend "find papers about agent evaluation" \
   --skills examples/skills \
   --semantic \
+  --json
+```
+
+Build an optional semantic cache:
+
+```bash
+skilltopo semantic-cache build \
+  --skills examples/skills \
+  --output .skilltopo/skill_embeddings.json \
+  --json
+```
+
+Use the cache during semantic recommendation:
+
+```bash
+skilltopo recommend "find papers about agent evaluation" \
+  --skills examples/skills \
+  --semantic \
+  --semantic-cache .skilltopo/skill_embeddings.json \
   --json
 ```
 
@@ -119,6 +148,10 @@ long query    > 15 characters: 0.15
 ```
 
 Semantic matching is disabled by default. If `--semantic` is used but `sentence-transformers` is unavailable or model loading fails, SkillTopo falls back to keyword-only routing.
+
+The semantic cache command is also optional. It is useful for host-agent integrations that want to precompute skill embeddings, but it does not start a server or execute skills.
+
+The first real semantic run may be slow because `sentence-transformers` may download and load the model from Hugging Face. In one Windows test environment, the first semantic recommendation took about 400 seconds, while same-process warm queries took about 0.06-0.10 seconds. Keyword-only mode does not download models.
 
 ## Skill metadata example
 
@@ -182,6 +215,16 @@ The evaluator reports:
 - `false_positive_rate`
 - `unsafe_recommendation_rate`
 
+## Documentation
+
+- [Design notes](docs/design.md)
+- [Metadata schema](docs/metadata-schema.md)
+- [Hermes-like integration](docs/integration-hermes-like.md)
+- [Semantic matching optimization](docs/semantic-matching-optimization.md)
+- [Hermes-like minimal example](examples/integrations/hermes_like/README.md)
+- [Safety notes](docs/safety.md)
+- [Release checklist](docs/release-checklist.md)
+
 ## License and attribution
 
 SkillTopo is released under the **Apache License 2.0**.
@@ -192,6 +235,6 @@ Copyright 2026 Emile Jiang (nightboy87).
 
 ## Project status
 
-Current version: `v0.2.0-alpha`.
+Current version: `v0.2.1`.
 
-This is an alpha project. Do not use SkillTopo as the only safety layer before executing destructive, irreversible, external-sending, or production-changing actions.
+This is still an alpha-stage project. Do not use SkillTopo as the only safety layer before executing destructive, irreversible, external-sending, or production-changing actions.

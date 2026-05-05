@@ -4,6 +4,7 @@ from dataclasses import dataclass
 from .loader import load_skills
 from .matcher import DEFAULT_GLOBAL_NEGATIVE_KEYWORDS, dynamic_threshold, keyword_match, negative_match
 from .models import Recommendation, RouteResult, Skill
+from .semantic_cache import CachedSemanticMatcher, EmbeddingFn
 from .semantic_match import DEFAULT_SEMANTIC_MODEL, SemanticMatcher
 
 @dataclass
@@ -17,11 +18,21 @@ class WorkflowRecommendation:
 class SkillRouter:
     def __init__(self, skills: list[Skill], use_semantic: bool = False,
                  semantic_model: str = DEFAULT_SEMANTIC_MODEL,
+                 semantic_cache_path: str | None = None,
+                 semantic_query_embed_fn: EmbeddingFn | None = None,
                  global_negative_keywords: list[str] | None = None) -> None:
         self.skills = skills
         self.use_semantic = use_semantic
         self.global_negative_keywords = global_negative_keywords or DEFAULT_GLOBAL_NEGATIVE_KEYWORDS
-        self.semantic_matcher = SemanticMatcher(semantic_model) if use_semantic else None
+        if use_semantic and semantic_cache_path:
+            self.semantic_matcher = CachedSemanticMatcher(
+                skills,
+                semantic_cache_path,
+                model_name=semantic_model,
+                query_embed_fn=semantic_query_embed_fn,
+            )
+        else:
+            self.semantic_matcher = SemanticMatcher(semantic_model) if use_semantic else None
 
     @property
     def semantic_available(self) -> bool:
@@ -95,9 +106,21 @@ class SkillRouter:
                 "no_match_reason": route.no_match_reason}
 
 def skill_recommend(query: str, skills_path: str, top_k: int = 3, use_semantic: bool = False,
-                    semantic_model: str = DEFAULT_SEMANTIC_MODEL) -> RouteResult:
-    return SkillRouter(load_skills(skills_path), use_semantic=use_semantic, semantic_model=semantic_model).recommend(query, top_k=top_k)
+                    semantic_model: str = DEFAULT_SEMANTIC_MODEL,
+                    semantic_cache_path: str | None = None) -> RouteResult:
+    return SkillRouter(
+        load_skills(skills_path),
+        use_semantic=use_semantic,
+        semantic_model=semantic_model,
+        semantic_cache_path=semantic_cache_path,
+    ).recommend(query, top_k=top_k)
 
 def workflow_recommend(query: str, skills_path: str, top_k: int = 3, use_semantic: bool = False,
-                       semantic_model: str = DEFAULT_SEMANTIC_MODEL) -> dict:
-    return SkillRouter(load_skills(skills_path), use_semantic=use_semantic, semantic_model=semantic_model).workflow_recommend(query, top_k=top_k)
+                       semantic_model: str = DEFAULT_SEMANTIC_MODEL,
+                       semantic_cache_path: str | None = None) -> dict:
+    return SkillRouter(
+        load_skills(skills_path),
+        use_semantic=use_semantic,
+        semantic_model=semantic_model,
+        semantic_cache_path=semantic_cache_path,
+    ).workflow_recommend(query, top_k=top_k)
