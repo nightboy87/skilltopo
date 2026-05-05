@@ -37,6 +37,18 @@ SkillTopo 提供：
 
 ## 安装
 
+基础安装：
+
+```bash
+pip install skilltopo
+```
+
+如果要启用语义匹配：
+
+```bash
+pip install "skilltopo[semantic]"
+```
+
 本地开发：
 
 ```bash
@@ -65,6 +77,25 @@ skilltopo recommend "代码崩了" --skills examples/skills --json
 skilltopo recommend "帮我找几篇关于 Agent 评估的论文" \
   --skills examples/skills \
   --semantic \
+  --json
+```
+
+构建可选语义缓存：
+
+```bash
+skilltopo semantic-cache build \
+  --skills examples/skills \
+  --output .skilltopo/skill_embeddings.json \
+  --json
+```
+
+在语义推荐中使用缓存：
+
+```bash
+skilltopo recommend "帮我找几篇关于 Agent 评估的论文" \
+  --skills examples/skills \
+  --semantic \
+  --semantic-cache .skilltopo/skill_embeddings.json \
   --json
 ```
 
@@ -123,6 +154,10 @@ final = min(0.30 * 语义分数 + 0.05 * 技能优先级, 0.35)
 ```
 
 语义匹配默认关闭。只有传入 `--semantic` 才会启用。如果用户没有安装 `sentence-transformers`，或模型加载失败，系统会自动降级为纯关键词匹配。
+
+语义缓存命令也是可选能力。它适合宿主 Agent（智能体）预计算技能 embedding（向量表示），但不会启动服务，也不会执行技能。
+
+第一次真实语义运行可能很慢，因为 `sentence-transformers`（句向量模型库）可能需要从 Hugging Face（模型托管平台）下载并加载模型。一次 Windows（视窗操作系统）测试环境中，首次语义推荐约 `400` 秒；同一进程内热查询约 `0.06-0.10` 秒。纯关键词模式不会下载模型。
 
 ## 技能元数据示例
 
@@ -186,6 +221,16 @@ metadata:
 - `false_positive_rate`：误推荐率；
 - `unsafe_recommendation_rate`：高风险技能误推荐率。
 
+## 文档
+
+- [设计说明](docs/design.md)
+- [元数据结构](docs/metadata-schema.md)
+- [Hermes-like 集成](docs/integration-hermes-like.md)
+- [语义匹配优化](docs/semantic-matching-optimization.md)
+- [Hermes-like 最小示例](examples/integrations/hermes_like/README.md)
+- [安全说明](docs/safety.md)
+- [发布检查清单](docs/release-checklist.md)
+
 ## 开源协议和作者标注
 
 SkillTopo 使用 **Apache License 2.0（阿帕奇许可证 2.0）**。
@@ -197,6 +242,6 @@ Copyright 2026 Emile Jiang (nightboy87)
 
 ## 项目状态
 
-当前版本：`v0.2.0-alpha`。
+当前版本：`v0.2.1`。
 
-这是 alpha（早期）版本。它适合作为技能路由和技能拓扑管理的基础层，但不要把它当成执行危险操作前的唯一安全措施。对于删除文件、发送外部消息、审批、付款、改生产数据等高风险行为，必须额外加入人工确认和权限控制。
+这仍然是 alpha（早期）阶段项目。它适合作为技能路由和技能拓扑管理的基础层，但不要把它当成执行危险操作前的唯一安全措施。对于删除文件、发送外部消息、审批、付款、改生产数据等高风险行为，必须额外加入人工确认和权限控制。

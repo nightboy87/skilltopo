@@ -26,9 +26,11 @@ def load_eval_cases(path: str | Path) -> list[dict[str, Any]]:
     return cases
 
 def evaluate(eval_path: str | Path, skills_path: str | Path, top_k: int = 3,
-             use_semantic: bool = False, semantic_model: str | None = None) -> dict[str, Any]:
+             use_semantic: bool = False, semantic_model: str | None = None,
+             semantic_cache_path: str | None = None) -> dict[str, Any]:
     router = SkillRouter(load_skills(skills_path), use_semantic=use_semantic,
-                         semantic_model=semantic_model or "paraphrase-multilingual-MiniLM-L12-v2")
+                         semantic_model=semantic_model or "paraphrase-multilingual-MiniLM-L12-v2",
+                         semantic_cache_path=semantic_cache_path)
     cases = load_eval_cases(eval_path)
     results: list[EvalCaseResult] = []
     false_positive = no_match_total = no_match_correct = unsafe_recommendation = 0
