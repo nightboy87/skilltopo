@@ -35,16 +35,6 @@ SkillTopo therefore uses this rule:
 
 ## Installation
 
-```bash
-pip install skilltopo
-```
-
-For semantic matching:
-
-```bash
-pip install "skilltopo[semantic]"
-```
-
 For local development:
 
 ```bash
