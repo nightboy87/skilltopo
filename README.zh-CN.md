@@ -39,16 +39,6 @@ SkillTopo 提供：
 
 基础安装：
 
-```bash
-pip install skilltopo
-```
-
-如果要启用语义匹配：
-
-```bash
-pip install "skilltopo[semantic]"
-```
-
 本地开发：
 
 ```bash
