@@ -10,4 +10,4 @@ Before publishing:
 - [ ] Confirm no private paths, API keys, or third-party original skill content exist.
 - [ ] Create GitHub repository.
 - [ ] Push initial commit.
-- [ ] Tag `v0.2.0-alpha`.
+- [ ] Tag `v0.2.1`.
